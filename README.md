@@ -16,9 +16,14 @@ Currently I am working on the [patient](https://www.hl7.org/fhir/patient.html) r
 ![img](https://www.dropbox.com/s/r0eo7a041oxnsm1/Screenshot%20from%202016-12-29%2019-12-01.png?raw=1)
 
 # Installation
-* clone the repository: `git clone git@github.com:shalkam/gql-fhir.git your-project-name`
+* Clone the repository: `git clone git@github.com:shalkam/gql-fhir.git your-project-name`
 * Change directory`cd your-project-name`
-* start app development `npm start`
+* Install dependencies `npm install`
+
+# Development
+* Start app development `npm start`
+* By default the server port is `3000`
+* You can browse to graphiql on http://localhost:3000/graphiql
 
 # Build
-to build the app run `npm run build`
+To build the app run `npm run build`

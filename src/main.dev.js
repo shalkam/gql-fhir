@@ -9,7 +9,6 @@ import {
 // var MongoDB = require('./loaders/mongo.js');
 import Server from './server/server.dev.js';
 import path from 'path';
-Server.init();
 
 let menu;
 let template;
@@ -21,6 +20,7 @@ app.on('window-all-closed', () => {
 });
 
 app.on('ready', () => {
+  Server.init();
   mainWindow = new BrowserWindow({
     show: false,
     width: 1024,

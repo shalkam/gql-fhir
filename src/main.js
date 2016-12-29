@@ -2,7 +2,6 @@ import { app, BrowserWindow, Menu, shell } from 'electron';
 // var Loader = require('./loaders/index.js');
 // var MongoDB = require('./loaders/mongo.js');
 import Server from './server/server.js';
-Server.init();
 
 let menu;
 let template;
@@ -14,6 +13,7 @@ app.on('window-all-closed', () => {
 });
 
 app.on('ready', () => {
+  Server.init();
   mainWindow = new BrowserWindow({
     show: false,
     width: 1024,

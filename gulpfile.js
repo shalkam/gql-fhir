@@ -5,14 +5,13 @@ var frontendCompiler = require('./src/client/webpack.js');
 var backendCompiler = require('./webpack.js');
 var prc;
 function startElectron() {
-  prc = spawn('electron',[path.join(__dirname, 'dist','main.js')]);
+  prc = spawn(path.join(__dirname,'node_modules', 'electron', 'dist', 'electron'),[path.join(__dirname, 'dist','main.js')]);
   prc.stdout.setEncoding('utf8');
   prc.stdout.on('data', function (data) {
     var str = data.toString();
     console.log(str);
   });
   prc.on('close', (code, signal) => {
-    console.log(signal);
     if(signal === 'SIGUSR2') {
       console.log('restarting electron ....');
       startElectron();
@@ -46,11 +45,13 @@ gulp.task('backend-watch', function(done) {
   var firedDone = false;
   startElectron();
   backendCompiler.watch(100, function(err, stats) {
+    // if it's first time compiling
     if(!firedDone) {
       firedDone = true;
       done();
+    } else {
+      prc.kill('SIGUSR2');
     }
-    prc.kill('SIGUSR2');
     console.log('backend compiled');
   });
 });

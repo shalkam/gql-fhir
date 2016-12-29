@@ -1,0 +1,48 @@
+{
+  "name": "backend-with-webpack",
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon server/dist/backend.js && gulp backend-watch",
+    "start": "electron dist/main.js"
+  },
+  "main": "server/dist/backend.js",
+  "devDependencies": {
+    "apollo-client": "^0.5.24",
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "deep-merge": "^1.0.0",
+    "electron": "1.4.7",
+    "electron-notification-shim": "^1.1.0",
+    "formsy-react": "^0.19.0",
+    "formsy-react-components": "^0.9.0",
+    "graphql-fetch-schema": "^0.3.0",
+    "gulp": "^3.9.1",
+    "gulp-forever-monitor": "0.0.3",
+    "json-loader": "^0.5.4",
+    "pubsub-js": "^1.5.4",
+    "react": "^15.4.1",
+    "react-apollo": "^0.7.2",
+    "react-dom": "^15.4.1",
+    "react-hot-loader": "^3.0.0-beta.3",
+    "react-photonkit": "github:react-photonkit/react-photonkit",
+    "react-router": "^3.0.0",
+    "shortid": "^2.2.6",
+    "source-map-support": "^0.4.7",
+    "webpack": "^1.14.0",
+    "webpack-dev-middleware": "^1.9.0",
+    "webpack-hot-middleware": "^2.14.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "graphql": "^0.8.2",
+    "graphql-custom-types": "^0.7.1",
+    "graphql-server-express": "^0.4.3",
+    "graphql-tag": "^1.1.2",
+    "just-date": "^3.1.3",
+    "mongoose": "^4.7.4"
+  }
+}

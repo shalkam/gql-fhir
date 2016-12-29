@@ -1,0 +1,19 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello React</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+  {
+    const script = document.createElement('script');
+    const config = require('../../config.js');
+    script.src = (process.env.NODE_ENV !== 'production')
+    ? config.APP_URL + ':' + config.APP_PORT + '/dist/bundle.js'
+    : './dist/bundle.js';
+    document.write(script.outerHTML);
+  }
+  </script>
+</body>
+</html>

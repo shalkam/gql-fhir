@@ -4,9 +4,16 @@ Currently I am working on the [patient](https://www.hl7.org/fhir/patient.html) r
 # Features
 * Live editing inside electron
 * Webpack for bundling both backend and frontend
-* React.js
-* Graphql
-* MongoDB using mongoose
+* React.js for the frontend
+* Graphql & MongoDB using mongoose on the backend
+
+![img](https://www.dropbox.com/s/ostn0fzle7uvh0q/Screenshot%20from%202016-12-29%2019-12-38.png?raw=1)
+
+![img](https://www.dropbox.com/s/ogkn39kmlzludze/Screenshot%20from%202016-12-29%2019-14-13.png?raw=1)
+
+![img](https://www.dropbox.com/s/cx58hxl3gguhwro/Screenshot%20from%202016-12-29%2019-11-35.png?raw=1)
+
+![img](https://www.dropbox.com/s/r0eo7a041oxnsm1/Screenshot%20from%202016-12-29%2019-12-01.png?raw=1)
 
 # Installation
 * clone the repository: `git clone git@github.com:shalkam/gql-fhir.git your-project-name`

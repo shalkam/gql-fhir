@@ -1,11 +1,9 @@
 import PubSub from 'pubsub-js';
 const Routes = {
   path: 'patients',
-  getComponent(nextState, cb) {
-    cb(null, require('./').default);
-  },
-  getIndexRoute(nextState, cb) {
-    cb(null, { component: require('./List').default });
+  component : require('./index.js').default,
+  indexRoute :{
+    component: require('./list/index.js').default
   },
   childRoutes: [
     // {
@@ -30,9 +28,7 @@ const Routes = {
     // },
     {
       path: 'create',
-      getComponents(nextState, cb) {
-        cb(null, require('./Form').default);
-      }
+      component: require('./form').default
     },
     // {
     //     path: ':id',
@@ -44,9 +40,7 @@ const Routes = {
     // },
     {
       path: ':id/edit',
-      getComponents(nextState, cb) {
-        cb(null, require('./Form').default);
-      }
+      component: require('./form').default
     },
     // {
     //   path: ':id/delete',

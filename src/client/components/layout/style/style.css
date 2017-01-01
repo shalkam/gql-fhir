@@ -1,9 +1,9 @@
 a:focus, a:hover {
-    color: inherit;
-    text-decoration: inherit;
+  color: inherit;
+  text-decoration: inherit;
 }
 .toolbar-header h1.title {
-    margin: .67em 0;
+  margin: .67em 0;
 }
 
 .nav-tabs {
@@ -17,14 +17,16 @@ a:focus, a:hover {
   padding: 3px;
   font-size: 12px;
   text-align: center;
-  border-left: 1px solid #989698;
+  border-bottom: 1px solid #989698;
   background-color: #b8b6b8;
   background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#b8b6b8),color-stop(100%,#b0aeb0));
   background-image: -webkit-linear-gradient(top,#b8b6b8 0,#b0aeb0 100%);
   background-image: linear-gradient(to bottom,#b8b6b8 0,#b0aeb0 100%);
 }
 .nav-tabs li.active {
-  background: #ddd;
+  background: #fff;
+  border: 1px solid #989698;
+  border-bottom: none;
 }
 .nav-tabs li a {
   color: #fff;

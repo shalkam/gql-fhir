@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { ApolloProvider } from 'react-apollo';
 import { Router, hashHistory } from 'react-router';
-import Routes from './Routes.jsx';
+import Routes from './routes.jsx';
 import config from '../../config.js';
 import ApolloClient, { createNetworkInterface } from 'apollo-client';
 

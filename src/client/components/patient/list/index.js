@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import {Link} from 'react-router';
+import {hashHistory} from 'react-router';
+import {Button} from 'react-bootstrap';
 
 class List extends Component {
   componentWillReceiveProps(newProps) {
@@ -23,9 +24,9 @@ class List extends Component {
           {patients.map((patient) => {
             return <tr>
               <td>
-                <Link className='btn btn-primary' to={'patients/'+patient._id+'/edit'}>
+                <Button bsSize="xsmall" bsStyle='primary' onClick={() => hashHistory.push('patients/'+patient._id+'/edit')}>
                   edit
-                </Link>
+                </Button>
               </td>
               <td>{patient._id}</td>
               <td>{patient.name[0].text}</td>

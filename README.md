@@ -7,6 +7,9 @@ Currently I am working on the [patient](https://www.hl7.org/fhir/patient.html) r
 * React.js for the frontend
 * Graphql & MongoDB using mongoose on the backend
 
+# Why Graphql?
+Graphql has a very flexible type definition system, where HL7 FHIR specifications can fit right into.
+
 ![img](https://www.dropbox.com/s/ogkn39kmlzludze/Screenshot%20from%202016-12-29%2019-14-13.png?raw=1)
 
 ![img](https://www.dropbox.com/s/ostn0fzle7uvh0q/Screenshot%20from%202016-12-29%2019-12-38.png?raw=1)

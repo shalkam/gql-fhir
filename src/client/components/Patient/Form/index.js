@@ -15,32 +15,41 @@ class FormIndex extends Component {
     }
   }
   render() {
-    return <div className='padded-more'>
-      <Form model={this.state.model}/>
-    </div>
+    return <Form model={this.state.model}/>
   }
 }
 
 const query = gql`query load($id: ID!) {
   patient(id: $id) {
     _id
-    active
-    birthDate
-    identifier {
-      value
-    }
-    name {
-      text
-    }
-    address {
-      use
-    }
-    telecom {
-      use
-      system
-      value
-    }
-    gender
+     active
+     birthDate
+     identifier {
+       value
+     }
+     name {
+       text
+     }
+     address {
+       use
+     }
+     telecom {
+       use
+       system
+       value
+     }
+     gender
+     deceasedBoolean
+     deceasedDateTime
+     address {
+       use
+       text
+     }
+     mariatalStatus{
+       text
+     }
+     multipleBirthBoolean
+     multipleBirthInteger
   }
 }`;
 

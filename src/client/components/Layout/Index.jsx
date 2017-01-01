@@ -7,6 +7,9 @@ import {
 } from 'react-photonkit';
 import PubSub from 'pubsub-js';
 import Nav from './Nav.jsx';
+import '../../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './style/style.css';
+
 export default class Layout extends React.Component {
   componentWillMount() {
     this.setState({title: 'Home'});

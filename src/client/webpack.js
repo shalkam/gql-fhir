@@ -43,6 +43,12 @@ var frontendConfig = wpconfig({
   },
   module: {
     loaders: [
+      { test: /\.png$/, loader: "url-loader?limit=100000" },
+      { test: /\.jpg$/, loader: "file-loader" },
+      { test: /\.css$/, loader: 'style-loader!css-loader?minimize' },
+      { test: /\.less$/, loader: "style-loader!css-loader?minimize!less-loader" },
+      { test: /\.gif$/, loader: "url-loader?mimetype=image/png" },
+      { test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/, loader: "file-loader" },
       {
         test: /.jsx?$/,
         loader: 'babel-loader',

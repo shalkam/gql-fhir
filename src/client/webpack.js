@@ -34,7 +34,7 @@ function wpconfig(overrides) {
 var buildPath = path.join(__dirname, '../../dist/client/dist/');
 var frontendConfig = wpconfig({
   entry: [
-    path.join(__dirname, 'index.jsx')
+    path.join(__dirname, 'index.js')
   ],
   output: {
     path: buildPath,
@@ -66,7 +66,7 @@ if(process.env.NODE_ENV !== 'production') {
   frontendConfig.output.path = '/';
   frontendConfig.entry = [
     'webpack-hot-middleware/client?path='+config.APP_URL + ':' + config.APP_PORT+'/__webpack_hmr&timeout=20000&reload=true',
-    path.join(__dirname, '../src/client/index.jsx')
+    path.join(__dirname, '../src/client/index.js')
   ];
   frontendConfig.plugins = [
     new webpack.HotModuleReplacementPlugin(),

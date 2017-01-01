@@ -23,11 +23,15 @@ Graphql has a very flexible type definition system, where HL7 FHIR specification
 * MongoDB
 
 # Installation
+
+[![asciicast](https://asciinema.org/a/7aes2ndgveuozfnz5hn6bi5a0.png)](https://asciinema.org/a/7aes2ndgveuozfnz5hn6bi5a0?speed=3)
+
 * Clone the repository: `git clone git@github.com:shalkam/gql-fhir.git your-project-name`
 * Change directory`cd your-project-name`
 * Install dependencies `npm install`
 
 # Development
+* make sure you have MongoDB running (you can configure db connection inside `config.js` file)
 * Start app development `npm start`
 * By default the server port is `3000`
 * You can browse to graphiql on `http://localhost:3000/graphiql`

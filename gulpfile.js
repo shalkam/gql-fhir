@@ -4,8 +4,15 @@ var spawn = require('child_process').spawn;
 var frontendCompiler = require('./src/client/webpack.js');
 var backendCompiler = require('./webpack.js');
 var prc;
-function startElectron() {
-  prc = spawn(path.join(__dirname,'node_modules', 'electron', 'dist', 'electron'),[path.join(__dirname, 'dist','main.js')]);
+function watchElectron() {
+  var paths = {
+    darwin: 'dist/Electron.app/Contents/MacOS/Electron',
+    freebsd: 'dist/electron',
+    linux: 'dist/electron',
+    win32: 'dist/electron.exe'
+  }
+  var electronPath = path.join(__dirname,'node_modules', 'electron', paths[process.platform]);
+  prc = spawn(electronPath,[path.join(__dirname, 'dist','main.js')]);
   prc.stdout.setEncoding('utf8');
   prc.stdout.on('data', function (data) {
     var str = data.toString();
@@ -14,7 +21,7 @@ function startElectron() {
   prc.on('close', (code, signal) => {
     if(signal === 'SIGUSR2') {
       console.log('restarting electron ....');
-      startElectron();
+      watchElectron();
     }
   });
   return prc;
@@ -43,7 +50,7 @@ gulp.task('backend-build', function(done) {
 
 gulp.task('backend-watch', function(done) {
   var firedDone = false;
-  startElectron();
+  watchElectron();
   backendCompiler.watch(100, function(err, stats) {
     // if it's first time compiling
     if(!firedDone) {

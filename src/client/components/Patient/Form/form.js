@@ -11,7 +11,6 @@ import {
   Col,
   Row
 } from 'react-bootstrap';
-import {fromObj} from 'form-data-to-object';
 import { Checkbox, CheckboxGroup, Input, RadioGroup, Select, File, Textarea } from 'formsy-react-components';
 import ToHumanName from '../../../common/fhir/helpers/to-human-name.js';
 import ToNationalID from '../../../common/fhir/helpers/to-national-id.js';
@@ -26,7 +25,6 @@ class Form extends Component {
       const date = new Date(model.deceasedDateTime);
       model.deceasedDateTime = date.toISOString().slice(0, -1);
     }
-    model = fromObj(model);
     this.refs.form.reset(model);
   }
   formatDateTime(datetime) {

@@ -23,9 +23,7 @@ Graphql has a very flexible type definition system, where HL7 FHIR specification
 * MongoDB
 
 # Installation
-[<div style="text-align:center">
-<img src="https://asciinema.org/a/7aes2ndgveuozfnz5hn6bi5a0.png" style="width:400px; height:400px;" >
-</div>](https://asciinema.org/a/7aes2ndgveuozfnz5hn6bi5a0?speed=3)
+[<img src="https://asciinema.org/a/7aes2ndgveuozfnz5hn6bi5a0.png" height="400" width="500">](https://asciinema.org/a/7aes2ndgveuozfnz5hn6bi5a0?speed=3)
 
 * Clone the repository: `git clone git@github.com:shalkam/gql-fhir.git your-project-name`
 * Change directory`cd your-project-name`

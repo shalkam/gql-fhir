@@ -49,4 +49,4 @@ class Loader extends events.EventEmitter {
   }
 }
 
-export default new Loader();;
+export default new Loader();

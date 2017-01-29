@@ -22,7 +22,7 @@ class Loader extends events.EventEmitter {
     app.get('*', function (_, res) { res.sendFile(config.INDEX_FILE) });
     app.listen(config.APP_PORT, () => {
       self.emit('server.loaded');
-      console.log('Now browse to ' + config.APP_URL + ':' + config.APP_PORT)
+      console.log('Now browse to: ' + config.APP_URL + ':' + config.APP_PORT)
     });
   }
 }

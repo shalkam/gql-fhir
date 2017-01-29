@@ -3,13 +3,17 @@ import {
   BrowserWindow,
   Menu,
   shell,
-  ipcMain
+  ipcMain,
+  dialog
 } from 'electron';
 // var Loader = require('./loaders/index.js');
 // var MongoDB = require('./loaders/mongo.js');
 import Server from './server/server.dev.js';
 import path from 'path';
 
+// dialog.showErrorBox = function(title, content) {
+//     console.log(`${title}\n${content}`);
+// };
 let menu;
 let template;
 let mainWindow = null;

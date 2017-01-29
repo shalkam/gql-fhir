@@ -21,7 +21,6 @@ app.on('ready', () => {
   });
   mainWindow.loadURL(`file://${__dirname}/client/index.html`);
   Server.on('server.loaded', () => {
-     console.log('EventEmitter is working');
      mainWindow.webContents.send('loaded.server');
    })
   mainWindow.webContents.on('did-finish-load', () => {

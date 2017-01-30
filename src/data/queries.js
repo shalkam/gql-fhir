@@ -3,4 +3,12 @@ import user from './common/acl/user/queries';
 import valueSet from './fhir/resources/value-set/queries/index.js';
 import resources from './fhir/resources/resource/queries/index.js';
 import practitioner from './fhir/resources/practitioner/queries/index.js';
-export default { ...patient, ...user, ...valueSet, ...resources, ...practitioner };
+import relatedPerson from './fhir/resources/related-person/queries/index.js';
+export default {
+  ...patient,
+  ...user,
+  ...valueSet,
+  ...resources,
+  ...practitioner,
+  ...relatedPerson
+};

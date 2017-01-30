@@ -1,6 +1,13 @@
 An implementation for the hl7 fhir specifications as defined here [HL7 FHIR](https://www.hl7.org/fhir/)
 
-Currently I am working on the [patient](https://www.hl7.org/fhir/patient.html) resource
+Server is currently implementing the following resources:
+- [x] Patient
+- [x] ValueSet
+- [x] Practitioner
+- [x] RelatedPerson
+- [x] Encounter (Still in progress)
+
+For more details check the [roadmap](https://github.com/shalkam/gql-fhir/wiki/Roadmap)
 # Features
 * Live editing inside electron
 * Webpack for bundling both backend and frontend
@@ -31,7 +38,15 @@ Graphql has a very flexible type definition system, where HL7 FHIR specification
 
 # Development
 * make sure you have MongoDB running (you can configure db connection inside `config.js` file)
-* Start app development `npm start`
+* Start app development
+```shell
+npm start
+```
+this will start server using [electron.js](http://electron.atom.io)
+* To start the server only using [nodemon](https://nodemon.io/):
+```shell
+npm run dev-server
+```
 * By default the server port is `3000`
 * You can browse to graphiql on `http://localhost:3000/graphiql`
 

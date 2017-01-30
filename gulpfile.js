@@ -45,8 +45,8 @@ gulp.task('frontend-build', function(done) {
   frontendCompiler.run(onBuild(done));
 });
 
-gulp.task('backend-build', function(done) {
-  backendCompiler.run(onBuild(done));
+gulp.task('server-build', function(done) {
+  serverCompiler.run(onBuild(done));
 });
 
 gulp.task('watch-electron', function(done) {

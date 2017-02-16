@@ -10,7 +10,7 @@ class modelIndex extends baseModel {
     if (!params.data.id) {
       params.data.id = shortid.generate();
     }
-    params.data.resourceType = 'Practitioner';
+    params.data.resourceType = 'RelatedPerson';
     let res = model
       .findByIdAndUpdate(params.data.id, params.data, {
         new: true,

@@ -12,7 +12,6 @@ import expressWebpack from './express-webpack.js';
 import acl from 'acl';
 const app = express();
 const mongoStore = require('connect-mongo')(session);
-let aclInstance = {};
 class Loader extends events.EventEmitter {
   constructor() {
     super();
@@ -39,7 +38,7 @@ class Loader extends events.EventEmitter {
     app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
     mongoose.connection.on('connected', function(error) {
       if (error) throw error;
-      aclInstance = new acl(new acl.mongodbBackend(mongoose.connection.db, 'acl_'));
+      const aclInstance = new acl(new acl.mongodbBackend(mongoose.connection.db, 'acl_'));
       app.use(
         '/' + config.GQL_URL_DIR,
         graphqlExpress((req, res) => {

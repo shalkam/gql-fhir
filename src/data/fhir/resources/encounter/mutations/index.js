@@ -4,9 +4,9 @@ import upsert from './upsert';
 import { GraphQLObjectType } from 'graphql';
 
 export default {
-  practitioner: {
+  encounter: {
     type: new GraphQLObjectType({
-      name: 'practitionerMutation',
+      name: 'encounterMutation',
       fields: { removeOne, removeAll, upsert }
     }),
     resolve(root, params, context, ast) {

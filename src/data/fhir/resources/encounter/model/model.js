@@ -13,4 +13,4 @@ var schema = new DomainResource({
   communication: { type: {} }
 });
 
-export default mongoose.model('practitioner', schema);
+export default mongoose.model('encounter', schema);

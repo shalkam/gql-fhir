@@ -1,9 +1,8 @@
 import { GraphQLScalarType } from 'graphql';
-import base from './base.js';
 import { GraphQLError } from 'graphql/error';
 import { Kind } from 'graphql/language';
 
-const positiveInt = new GraphQLScalarType({
+export default new GraphQLScalarType({
   name: 'positiveInt',
   description: 'an integer with value more than zero',
   serialize: value => {
@@ -23,6 +22,3 @@ const positiveInt = new GraphQLScalarType({
     return ast.value;
   }
 });
-export default ({ name, description, input, required, multiple }) => {
-  return base({ name, description, input, required, multiple, type: positiveInt });
-};

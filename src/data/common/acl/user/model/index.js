@@ -10,13 +10,29 @@ class modelIndex extends baseModel {
     if (typeof context.req.user === 'undefined') {
       context.req.body.username = params.username;
       context.req.body.password = params.password;
-      const auth = passport.authenticate('local')(context.req);
-      const user = await auth['local']
-        .then(user => {
+      const auth = new Promise(function(resolve, reject) {
+        passport.authenticate('local', function(err, user, info) {
+          if (err) {
+            reject(err);
+          }
+          if (info && info.name && info.name.indexOf('Error') !== -1) {
+            reject(new Error(info.message));
+          }
+          if (!user) {
+            reject(new Error('No user returned'));
+          }
           context.req.logIn(user, function(err) {
-            res = user;
-            res.message = 'Logged in successfully!';
+            if (err) {
+              reject(err);
+            }
+            resolve(user);
           });
+        })(context.req);
+      });
+      await auth
+        .then(user => {
+          res = user;
+          res.message = 'Logged in successfully';
         })
         .catch(err => {
           res = err;
@@ -37,9 +53,19 @@ class modelIndex extends baseModel {
   async register(root, params, context, ast) {
     let res = {};
     const _id = shortid.generate();
-    // const projection = this.getProjection(ast.operation.selectionSet.selections[0]);
-    const register = await model
-      .register(new model({ _id, username: params.username }), params.password)
+    const register = new Promise(function(resolve, reject) {
+      model.register(new model({ _id, username: params.username }), params.password, (err, user) =>
+        {
+          if (err) {
+            reject(err);
+          }
+          if (!user) {
+            reject(new Error('No user returned'));
+          }
+          resolve(user);
+        });
+    });
+    await register
       .then(user => {
         res = user;
         res.password = params.password;

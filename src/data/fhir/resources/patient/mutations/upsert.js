@@ -1,11 +1,10 @@
 import { GraphQLNonNull, GraphQLID } from 'graphql';
-import type from '../types/index.js';
-import input from '../types/input.js';
+import { patient, patientInput } from '../../../profiles/resources/index.js';
 import model from '../model/index.js';
 
 export default {
-  type: type,
-  args: { data: { name: 'data', type: new GraphQLNonNull(input) } },
+  type: patient,
+  args: { data: { name: 'data', type: new GraphQLNonNull(patientInput) } },
   resolve(root, params, context, ast) {
     return model.upsert(...arguments);
   }

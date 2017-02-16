@@ -1,10 +1,10 @@
 import { GraphQLList } from 'graphql';
 
-import type from '../types/index.js';
+import { patient } from '../../../profiles/resources/index.js';
 import model from '../model/index.js';
 
 export default {
-  type: new GraphQLList(type),
+  type: new GraphQLList(patient),
   args: {},
   resolve(root, params, context, ast) {
     return model.find(...arguments);

@@ -3,13 +3,13 @@ var path = require('path');
 var fs = require('fs');
 var config = require('./config.js');
 
-// backend
-// var nodeModules = fs.readdirSync(path.join(__dirname, 'node_modules'))
-// .filter(function(x) {
-//   return ['.bin'].indexOf(x) === -1;
-// });
-let entry = process.env.NODE_ENV !== 'production' ? './server/index.dev.js' : './server.js';
-nodeModules = [ 'express', 'webpack', 'mongoose' ];
+let entry = process.env.NODE_ENV !== 'production' ? './server/index.dev.js' : './server/index.js';
+var nodeModules = [ 'mongoose' ];
+if (process.env.NODE_ENV !== 'production') {
+  nodeModules = fs.readdirSync(path.join(__dirname, 'node_modules')).filter(function(x) {
+    return [ '.bin' ].indexOf(x) === -1;
+  });
+}
 var serverConfig = {
   context: __dirname + '/src',
   entry: [ entry ],
@@ -25,13 +25,7 @@ var serverConfig = {
       callback();
     }
   ],
-  plugins: [
-    new webpack.BannerPlugin({
-      banner: "require('source-map-support').install();",
-      raw: true,
-      entryOnly: false
-    })
-  ],
+  plugins: [],
   module: {
     rules: [
       {
@@ -54,6 +48,11 @@ var serverConfig = {
 if (process.env.NODE_ENV !== 'production') {
   //defaultConfig.devtool = '#eval-source-map';
   serverConfig.devtool = 'source-map';
+  serverConfig.plugins.push(new webpack.BannerPlugin({
+    banner: "require('source-map-support').install();",
+    raw: true,
+    entryOnly: false
+  }));
   // serverConfig.debug = true;
 }
 module.exports = webpack(serverConfig);

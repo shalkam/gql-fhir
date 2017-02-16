@@ -3,8 +3,8 @@ import findOne from './find-one.js';
 import { GraphQLObjectType } from 'graphql';
 
 export default {
-  practitioner: {
-    type: new GraphQLObjectType({ name: 'practitionerQuery', fields: { find, findOne } }),
+  encounter: {
+    type: new GraphQLObjectType({ name: 'encounterQuery', fields: { find, findOne } }),
     resolve(root, params, context, ast) {
       return true;
     }

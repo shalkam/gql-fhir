@@ -45,7 +45,7 @@ gulp.task('frontend-build', function(done) {
   frontendCompiler.run(onBuild(done));
 });
 
-gulp.task('server-build', function(done) {
+gulp.task('build-server', function(done) {
   serverCompiler.run(onBuild(done));
 });
 
@@ -63,28 +63,30 @@ gulp.task('watch-electron', function(done) {
     console.log('Electron compiled');
   });
 });
-gulp.task('watch-server', function(done) {
+gulp.task('dev-server', function(done) {
   var firedDone = false;
   serverCompiler.watch(100, function(err, stats) {
     // if it's first time compiling
     if (!firedDone) {
       firedDone = true;
+      nodemon({
+        execMap: { js: 'node' },
+        script: path.join(__dirname, 'dist/server'),
+        ignore: [ '*' ],
+        watch: [ 'foo/' ],
+        ext: 'noop'
+      })
+        .on('restart', function() {
+          console.log('Patched!');
+        })
+        .on('quit', () => {
+          process.exit();
+        });
       done();
     }
     nodemon.restart();
   });
 });
 gulp.task('build', [ 'frontend-build', 'backend-build' ]);
-gulp.task('dev-server', [ 'watch-server' ], function() {
-  nodemon({
-    execMap: { js: 'node' },
-    script: path.join(__dirname, 'dist/server'),
-    ignore: [ '*' ],
-    watch: [ 'foo/' ],
-    ext: 'noop'
-  }).on('restart', function() {
-    console.log('Patched!');
-  });
-});
 gulp.task('run', [ 'watch-electron' ], function() {
 });

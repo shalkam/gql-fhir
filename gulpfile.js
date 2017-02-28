@@ -1,10 +1,13 @@
 var gulp = require('gulp');
 var path = require('path');
+var fs = require('fs');
 var nodemon = require('nodemon');
 var spawn = require('child_process').spawn;
+var fetchSchema = require('fetch-graphql-schema');
 var frontendCompiler = require('./src/client/webpack.js');
 var electronCompiler = require('./webpack.electron.js');
 var serverCompiler = require('./webpack.server.js');
+var config = require('./config.js');
 var ElectronPrc;
 var ServerPrc;
 function watchElectron() {
@@ -85,6 +88,18 @@ gulp.task('dev-server', function(done) {
       done();
     }
     nodemon.restart();
+  });
+});
+gulp.task('build-schema', function() {
+  fetchSchema(config.APP_URL + ':' + config.APP_PORT + '/' + config.GQL_URL_DIR, {
+    readable: true
+  }).then(function(schema) {
+    fs.writeFile(path.join(__dirname, 'src/data/schema.graphql'), schema, function(err) {
+      if (err) {
+        return console.log(err);
+      }
+      console.log('Schema saved to: src/data/schema.graphql');
+    });
   });
 });
 gulp.task('build', [ 'frontend-build', 'backend-build' ]);

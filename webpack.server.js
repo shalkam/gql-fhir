@@ -3,7 +3,6 @@ var path = require('path');
 var fs = require('fs');
 var config = require('./config.js');
 
-let entry = process.env.NODE_ENV !== 'production' ? './server/index.dev.js' : './server/index.js';
 var nodeModules = [ 'mongoose' ];
 if (process.env.NODE_ENV !== 'production') {
   nodeModules = fs.readdirSync(path.join(__dirname, 'node_modules')).filter(function(x) {
@@ -12,7 +11,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 var serverConfig = {
   context: __dirname + '/src',
-  entry: [ entry ],
+  entry: [ './server/index.js' ],
   target: 'node',
   output: { path: __dirname + '/dist', filename: 'server.js' },
   node: { __dirname: false, __filename: false },
@@ -41,7 +40,8 @@ var serverConfig = {
             }
           }
         ]
-      }
+      },
+      { test: /\.(graphql|gql)$/, exclude: /node_modules/, use: 'raw-loader' }
     ]
   }
 };

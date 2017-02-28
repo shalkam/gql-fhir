@@ -57,7 +57,7 @@ class converter {
     converter.json = json;
     let fields = {};
     if (json.kind === 'resource') {
-      fields['resourceType'] = { type: String, required: true };
+      converter.schema.add({ resourceType: { type: String, required: true } });
     }
     Object.keys(converter.obj).map(key => {
       if (converter.obj[key]) {

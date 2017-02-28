@@ -1,0 +1,1494 @@
+# A postal address
+type Address {
+  id: ID
+  extension: [Extension]
+  use: String
+  _use: Element
+  type: String
+  _type: Element
+  text: String
+  _text: Element
+  line: [String]
+  _line: Element
+  city: String
+  _city: Element
+  district: String
+  _district: Element
+  state: String
+  _state: Element
+  postalCode: String
+  _postalCode: Element
+  country: String
+  _country: Element
+  period: Period
+}
+
+# A postal address
+input AddressInput {
+  id: ID
+  extension: [ExtensionInput]
+  use: String
+  _use: ElementInput
+  type: String
+  _type: ElementInput
+  text: String
+  _text: ElementInput
+  line: [String]
+  _line: ElementInput
+  city: String
+  _city: ElementInput
+  district: String
+  _district: ElementInput
+  state: String
+  _state: ElementInput
+  postalCode: String
+  _postalCode: ElementInput
+  country: String
+  _country: ElementInput
+  period: PeriodInput
+}
+
+# Text node with attribution
+type Annotation {
+  id: ID
+  extension: [Extension]
+
+  # Individual responsible for the annotation
+  authorReference: Reference
+
+  # Individual responsible for the annotation
+  authorString: String
+  time: DateTime
+  _time: Element
+  text: String!
+  _text: Element
+}
+
+# Text node with attribution
+input AnnotationInput {
+  id: ID
+  extension: [ExtensionInput]
+
+  # Individual responsible for the annotation
+  authorReference: ReferenceInput
+
+  # Individual responsible for the annotation
+  authorString: String
+  time: DateTime
+  _time: ElementInput
+  text: String!
+  _text: ElementInput
+}
+
+# Content in a format defined elsewhere
+type Attachment {
+  id: ID
+  extension: [Extension]
+  contentType: String
+  _contentType: Element
+  language: String
+  _language: Element
+  data: String
+  _data: Element
+  url: String
+  _url: Element
+  size: unsignedInt
+  _size: Element
+  hash: String
+  _hash: Element
+  title: String
+  _title: Element
+  creation: DateTime
+  _creation: Element
+}
+
+# Content in a format defined elsewhere
+input AttachmentInput {
+  id: ID
+  extension: [ExtensionInput]
+  contentType: String
+  _contentType: ElementInput
+  language: String
+  _language: ElementInput
+  data: String
+  _data: ElementInput
+  url: String
+  _url: ElementInput
+  size: unsignedInt
+  _size: ElementInput
+  hash: String
+  _hash: ElementInput
+  title: String
+  _title: ElementInput
+  creation: DateTime
+  _creation: ElementInput
+}
+
+# Concept - reference to a terminology or just  text
+type CodeableConcept {
+  id: ID
+  extension: [Extension]
+  coding: [Coding]
+  text: String
+  _text: Element
+}
+
+# Concept - reference to a terminology or just  text
+input CodeableConceptInput {
+  id: ID
+  extension: [ExtensionInput]
+  coding: [CodingInput]
+  text: String
+  _text: ElementInput
+}
+
+# A reference to a code defined by a terminology system
+type Coding {
+  id: ID
+  extension: [Extension]
+  system: String
+  _system: Element
+  version: String
+  _version: Element
+  code: String
+  _code: Element
+  display: String
+  _display: Element
+  userSelected: Boolean
+  _userSelected: Element
+}
+
+# A reference to a code defined by a terminology system
+input CodingInput {
+  id: ID
+  extension: [ExtensionInput]
+  system: String
+  _system: ElementInput
+  version: String
+  _version: ElementInput
+  code: String
+  _code: ElementInput
+  display: String
+  _display: ElementInput
+  userSelected: Boolean
+  _userSelected: ElementInput
+}
+
+# Details of a Technology mediated contact point (phone, fax, email, etc.)
+type ContactPoint {
+  id: ID
+  extension: [Extension]
+  system: String
+  _system: Element
+  value: String
+  _value: Element
+  use: String
+  _use: Element
+  rank: positiveInt
+  _rank: Element
+  period: Period
+}
+
+# Details of a Technology mediated contact point (phone, fax, email, etc.)
+input ContactPointInput {
+  id: ID
+  extension: [ExtensionInput]
+  system: String
+  _system: ElementInput
+  value: String
+  _value: ElementInput
+  use: String
+  _use: ElementInput
+  rank: positiveInt
+  _rank: ElementInput
+  period: PeriodInput
+}
+
+# A date, or partial date (e.g. just year or year + month) as used in human
+# communication. There is no time zone. Dates SHALL be valid dates
+scalar date
+
+# The DateTime scalar type represents date time strings complying to ISO-8601.
+scalar DateTime
+
+# Base for all elements
+type Element {
+  id: ID
+  extension: [Extension]
+}
+
+# Base for all elements
+input ElementInput {
+  id: ID
+  extension: [ExtensionInput]
+}
+
+type Extension {
+  id: ID
+  extension: [Extension]
+  url: String!
+  _url: Element
+
+  # Value of extension
+  valueBoolean: Boolean
+
+  # Value of extension
+  valueInteger: Int
+
+  # Value of extension
+  valueDecimal: Float
+
+  # Value of extension
+  valueBase64Binary: String
+
+  # Value of extension
+  valueInstant: instant
+
+  # Value of extension
+  valueString: String
+
+  # Value of extension
+  valueUri: String
+
+  # Value of extension
+  valueDate: date
+
+  # Value of extension
+  valueDateTime: DateTime
+
+  # Value of extension
+  valueTime: String
+
+  # Value of extension
+  valueCode: String
+
+  # Value of extension
+  valueOid: String
+
+  # Value of extension
+  valueId: ID
+
+  # Value of extension
+  valueUnsignedInt: unsignedInt
+
+  # Value of extension
+  valuePositiveInt: positiveInt
+
+  # Value of extension
+  valueMarkdown: String
+
+  # Value of extension
+  valueAnnotation: Annotation
+
+  # Value of extension
+  valueAttachment: Attachment
+
+  # Value of extension
+  valueIdentifier: Identifier
+
+  # Value of extension
+  valueCodeableConcept: CodeableConcept
+
+  # Value of extension
+  valueCoding: Coding
+
+  # Value of extension
+  valueQuantity: Quantity
+
+  # Value of extension
+  valueRange: Range
+
+  # Value of extension
+  valuePeriod: Period
+
+  # Value of extension
+  valueRatio: Ratio
+
+  # Value of extension
+  valueSampledData: SampledData
+
+  # Value of extension
+  valueSignature: Signature
+
+  # Value of extension
+  valueHumanName: HumanName
+
+  # Value of extension
+  valueAddress: Address
+
+  # Value of extension
+  valueContactPoint: ContactPoint
+
+  # Value of extension
+  valueTiming: Timing
+
+  # Value of extension
+  valueReference: Reference
+
+  # Value of extension
+  valueMeta: Meta
+}
+
+input ExtensionInput {
+  id: ID
+  extension: [ExtensionInput]
+  url: String!
+  _url: ElementInput
+
+  # Value of extension
+  valueBoolean: Boolean
+
+  # Value of extension
+  valueInteger: Int
+
+  # Value of extension
+  valueDecimal: Float
+
+  # Value of extension
+  valueBase64Binary: String
+
+  # Value of extension
+  valueInstant: instant
+
+  # Value of extension
+  valueString: String
+
+  # Value of extension
+  valueUri: String
+
+  # Value of extension
+  valueDate: date
+
+  # Value of extension
+  valueDateTime: DateTime
+
+  # Value of extension
+  valueTime: String
+
+  # Value of extension
+  valueCode: String
+
+  # Value of extension
+  valueOid: String
+
+  # Value of extension
+  valueId: ID
+
+  # Value of extension
+  valueUnsignedInt: unsignedInt
+
+  # Value of extension
+  valuePositiveInt: positiveInt
+
+  # Value of extension
+  valueMarkdown: String
+
+  # Value of extension
+  valueAnnotation: AnnotationInput
+
+  # Value of extension
+  valueAttachment: AttachmentInput
+
+  # Value of extension
+  valueIdentifier: IdentifierInput
+
+  # Value of extension
+  valueCodeableConcept: CodeableConceptInput
+
+  # Value of extension
+  valueCoding: CodingInput
+
+  # Value of extension
+  valueQuantity: QuantityInput
+
+  # Value of extension
+  valueRange: RangeInput
+
+  # Value of extension
+  valuePeriod: PeriodInput
+
+  # Value of extension
+  valueRatio: RatioInput
+
+  # Value of extension
+  valueSampledData: SampledDataInput
+
+  # Value of extension
+  valueSignature: SignatureInput
+
+  # Value of extension
+  valueHumanName: HumanNameInput
+
+  # Value of extension
+  valueAddress: AddressInput
+
+  # Value of extension
+  valueContactPoint: ContactPointInput
+
+  # Value of extension
+  valueTiming: TimingInput
+
+  # Value of extension
+  valueReference: ReferenceInput
+
+  # Value of extension
+  valueMeta: MetaInput
+}
+
+# Name of a human - parts and usage
+type HumanName {
+  id: ID
+  extension: [Extension]
+  use: String
+  _use: Element
+  text: String
+  _text: Element
+  family: [String]
+  _family: Element
+  given: [String]
+  _given: Element
+  prefix: [String]
+  _prefix: Element
+  suffix: [String]
+  _suffix: Element
+  period: Period
+}
+
+# Name of a human - parts and usage
+input HumanNameInput {
+  id: ID
+  extension: [ExtensionInput]
+  use: String
+  _use: ElementInput
+  text: String
+  _text: ElementInput
+  family: [String]
+  _family: ElementInput
+  given: [String]
+  _given: ElementInput
+  prefix: [String]
+  _prefix: ElementInput
+  suffix: [String]
+  _suffix: ElementInput
+  period: PeriodInput
+}
+
+# An identifier intended for computation
+type Identifier {
+  id: ID
+  extension: [Extension]
+  use: String
+  _use: Element
+  type: CodeableConcept
+  system: String
+  _system: Element
+  value: String
+  _value: Element
+  period: Period
+  assigner: Reference
+}
+
+# An identifier intended for computation
+input IdentifierInput {
+  id: ID
+  extension: [ExtensionInput]
+  use: String
+  _use: ElementInput
+  type: CodeableConceptInput
+  system: String
+  _system: ElementInput
+  value: String
+  _value: ElementInput
+  period: PeriodInput
+  assigner: ReferenceInput
+}
+
+# A date, date-time or partial date (e.g. just year or year + month) as used in
+# human communication. If hours and minutes are specified, a time zone SHALL be
+# populated. Seconds must be provided due to schema type constraints but may be
+# zero-filled and may be ignored. Dates SHALL be valid dates. The time "24:00" is not allowed
+scalar instant
+
+# Metadata about a resource
+type Meta {
+  id: ID
+  extension: [Extension]
+  versionId: ID
+  lastUpdated: instant
+  _lastUpdated: Element
+  profile: [String]
+  _profile: Element
+  security: [Coding]
+  tag: [Coding]
+}
+
+# Metadata about a resource
+input MetaInput {
+  id: ID
+  extension: [ExtensionInput]
+  versionId: ID
+  lastUpdated: instant
+  _lastUpdated: ElementInput
+  profile: [String]
+  _profile: ElementInput
+  security: [CodingInput]
+  tag: [CodingInput]
+}
+
+type Mutation {
+  valueSet: valueSetMutation
+  patient: patientMutation
+}
+
+# A human-readable formatted text, including images
+type Narrative {
+  id: ID
+  extension: [Extension]
+  status: String!
+  _status: Element
+  div: String!
+  _div: Element
+}
+
+# A human-readable formatted text, including images
+input NarrativeInput {
+  id: ID
+  extension: [ExtensionInput]
+  status: String!
+  _status: ElementInput
+  div: String!
+  _div: ElementInput
+}
+
+# Information about an individual or animal receiving health care services
+type Patient {
+  resourceType: String
+  id: ID
+  meta: Meta
+  implicitRules: String
+  _implicitRules: Element
+  language: String
+  _language: Element
+  text: Narrative
+  contained: [Resource]
+  extension: [Extension]
+  modifierExtension: [Extension]
+  identifier: [Identifier]
+  active: Boolean
+  _active: Element
+  name: [HumanName]
+  telecom: [ContactPoint]
+  gender: String
+  _gender: Element
+  birthDate: date
+  _birthDate: Element
+
+  # Indicates if the individual is deceased or not
+  deceasedBoolean: Boolean
+
+  # Indicates if the individual is deceased or not
+  deceasedDateTime: DateTime
+  address: [Address]
+  maritalStatus: CodeableConcept
+
+  # Whether patient is part of a multiple birth
+  multipleBirthBoolean: Boolean
+
+  # Whether patient is part of a multiple birth
+  multipleBirthInteger: Int
+  photo: [Attachment]
+
+  # A contact party (e.g. guardian, partner, friend) for the patient
+  contact: [Patientcontact]
+
+  # This patient is known to be an animal (non-human)
+  animal: Patientanimal
+
+  # A list of Languages which may be used to communicate with the patient about his or her health
+  communication: [Patientcommunication]
+  careProvider: [Reference]
+  managingOrganization: Reference
+
+  # Link to another patient resource that concerns the same actual person
+  link: [Patientlink]
+}
+
+# This patient is known to be an animal (non-human)
+type Patientanimal {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  species: CodeableConcept!
+  breed: CodeableConcept
+  genderStatus: CodeableConcept
+}
+
+# This patient is known to be an animal (non-human)
+input PatientanimalInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  species: CodeableConceptInput!
+  breed: CodeableConceptInput
+  genderStatus: CodeableConceptInput
+}
+
+# A list of Languages which may be used to communicate with the patient about his or her health
+type Patientcommunication {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  language: CodeableConcept!
+  preferred: Boolean
+  _preferred: Element
+}
+
+# A list of Languages which may be used to communicate with the patient about his or her health
+input PatientcommunicationInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  language: CodeableConceptInput!
+  preferred: Boolean
+  _preferred: ElementInput
+}
+
+# A contact party (e.g. guardian, partner, friend) for the patient
+type Patientcontact {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  relationship: [CodeableConcept]
+  name: HumanName
+  telecom: [ContactPoint]
+  address: Address
+  gender: String
+  _gender: Element
+  organization: Reference
+  period: Period
+}
+
+# A contact party (e.g. guardian, partner, friend) for the patient
+input PatientcontactInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  relationship: [CodeableConceptInput]
+  name: HumanNameInput
+  telecom: [ContactPointInput]
+  address: AddressInput
+  gender: String
+  _gender: ElementInput
+  organization: ReferenceInput
+  period: PeriodInput
+}
+
+# Information about an individual or animal receiving health care services
+input PatientInput {
+  resourceType: String
+  id: ID
+  meta: MetaInput
+  implicitRules: String
+  _implicitRules: ElementInput
+  language: String
+  _language: ElementInput
+  text: NarrativeInput
+  contained: [ResourceInput]
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  identifier: [IdentifierInput]
+  active: Boolean
+  _active: ElementInput
+  name: [HumanNameInput]
+  telecom: [ContactPointInput]
+  gender: String
+  _gender: ElementInput
+  birthDate: date
+  _birthDate: ElementInput
+
+  # Indicates if the individual is deceased or not
+  deceasedBoolean: Boolean
+
+  # Indicates if the individual is deceased or not
+  deceasedDateTime: DateTime
+  address: [AddressInput]
+  maritalStatus: CodeableConceptInput
+
+  # Whether patient is part of a multiple birth
+  multipleBirthBoolean: Boolean
+
+  # Whether patient is part of a multiple birth
+  multipleBirthInteger: Int
+  photo: [AttachmentInput]
+
+  # A contact party (e.g. guardian, partner, friend) for the patient
+  contact: [PatientcontactInput]
+
+  # This patient is known to be an animal (non-human)
+  animal: PatientanimalInput
+
+  # A list of Languages which may be used to communicate with the patient about his or her health
+  communication: [PatientcommunicationInput]
+  careProvider: [ReferenceInput]
+  managingOrganization: ReferenceInput
+
+  # Link to another patient resource that concerns the same actual person
+  link: [PatientlinkInput]
+}
+
+# Link to another patient resource that concerns the same actual person
+type Patientlink {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  other: Reference!
+  type: String!
+  _type: Element
+}
+
+# Link to another patient resource that concerns the same actual person
+input PatientlinkInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  other: ReferenceInput!
+  type: String!
+  _type: ElementInput
+}
+
+type patientMutation {
+  removeAll: Boolean
+  remove(_id: ID!): Patient
+  upsert(data: PatientInput!): Patient
+}
+
+type patientQuery {
+  find: [Patient]
+  findOne(id: ID!): Patient
+}
+
+# Time range defined by start and end date/time
+type Period {
+  id: ID
+  extension: [Extension]
+  start: DateTime
+  _start: Element
+  end: DateTime
+  _end: Element
+}
+
+# Time range defined by start and end date/time
+input PeriodInput {
+  id: ID
+  extension: [ExtensionInput]
+  start: DateTime
+  _start: ElementInput
+  end: DateTime
+  _end: ElementInput
+}
+
+# an integer with value more than zero
+scalar positiveInt
+
+# A measured or measurable amount
+type Quantity {
+  id: ID
+  extension: [Extension]
+  value: Float
+  _value: Element
+  comparator: String
+  _comparator: Element
+  unit: String
+  _unit: Element
+  system: String
+  _system: Element
+  code: String
+  _code: Element
+}
+
+# A measured or measurable amount
+input QuantityInput {
+  id: ID
+  extension: [ExtensionInput]
+  value: Float
+  _value: ElementInput
+  comparator: String
+  _comparator: ElementInput
+  unit: String
+  _unit: ElementInput
+  system: String
+  _system: ElementInput
+  code: String
+  _code: ElementInput
+}
+
+type Query {
+  valueSet: valueSetQuery
+  patient: patientQuery
+}
+
+# Set of values bounded by low and high
+type Range {
+  id: ID
+  extension: [Extension]
+  low: Quantity
+  high: Quantity
+}
+
+# Set of values bounded by low and high
+input RangeInput {
+  id: ID
+  extension: [ExtensionInput]
+  low: QuantityInput
+  high: QuantityInput
+}
+
+# A ratio of two Quantity values - a numerator and a denominator
+type Ratio {
+  id: ID
+  extension: [Extension]
+  numerator: Quantity
+  denominator: Quantity
+}
+
+# A ratio of two Quantity values - a numerator and a denominator
+input RatioInput {
+  id: ID
+  extension: [ExtensionInput]
+  numerator: QuantityInput
+  denominator: QuantityInput
+}
+
+# A reference from one resource to another
+type Reference {
+  id: ID
+  extension: [Extension]
+  reference: String
+  _reference: Element
+  display: String
+  _display: Element
+}
+
+# A reference from one resource to another
+input ReferenceInput {
+  id: ID
+  extension: [ExtensionInput]
+  reference: String
+  _reference: ElementInput
+  display: String
+  _display: ElementInput
+}
+
+# Base Resource
+type Resource {
+  resourceType: String
+  id: ID
+  meta: Meta
+  implicitRules: String
+  _implicitRules: Element
+  language: String
+  _language: Element
+}
+
+# Base Resource
+input ResourceInput {
+  resourceType: String
+  id: ID
+  meta: MetaInput
+  implicitRules: String
+  _implicitRules: ElementInput
+  language: String
+  _language: ElementInput
+}
+
+# A series of measurements taken by a device
+type SampledData {
+  id: ID
+  extension: [Extension]
+  origin: Quantity!
+  period: Float!
+  _period: Element
+  factor: Float
+  _factor: Element
+  lowerLimit: Float
+  _lowerLimit: Element
+  upperLimit: Float
+  _upperLimit: Element
+  dimensions: positiveInt!
+  _dimensions: Element
+  data: String!
+  _data: Element
+}
+
+# A series of measurements taken by a device
+input SampledDataInput {
+  id: ID
+  extension: [ExtensionInput]
+  origin: QuantityInput!
+  period: Float!
+  _period: ElementInput
+  factor: Float
+  _factor: ElementInput
+  lowerLimit: Float
+  _lowerLimit: ElementInput
+  upperLimit: Float
+  _upperLimit: ElementInput
+  dimensions: positiveInt!
+  _dimensions: ElementInput
+  data: String!
+  _data: ElementInput
+}
+
+# A digital Signature - XML DigSig, JWT, Graphical image of signature, etc.
+type Signature {
+  id: ID
+  extension: [Extension]
+  type: [Coding]!
+  when: instant!
+  _when: Element
+
+  # Who signed the signature
+  whoUri: String!
+
+  # Who signed the signature
+  whoReference: Reference!
+  contentType: String!
+  _contentType: Element
+  blob: String!
+  _blob: Element
+}
+
+# A digital Signature - XML DigSig, JWT, Graphical image of signature, etc.
+input SignatureInput {
+  id: ID
+  extension: [ExtensionInput]
+  type: [CodingInput]!
+  when: instant!
+  _when: ElementInput
+
+  # Who signed the signature
+  whoUri: String!
+
+  # Who signed the signature
+  whoReference: ReferenceInput!
+  contentType: String!
+  _contentType: ElementInput
+  blob: String!
+  _blob: ElementInput
+}
+
+# A timing schedule that specifies an event that may occur multiple times
+type Timing {
+  id: ID
+  extension: [Extension]
+  event: [DateTime]
+  _event: Element
+  repeat: Element
+  code: CodeableConcept
+}
+
+# A timing schedule that specifies an event that may occur multiple times
+input TimingInput {
+  id: ID
+  extension: [ExtensionInput]
+  event: [DateTime]
+  _event: ElementInput
+  repeat: ElementInput
+  code: CodeableConceptInput
+}
+
+# an integer with value more than zero
+scalar unsignedInt
+
+# A set of codes drawn from one or more code systems
+type ValueSet {
+  resourceType: String
+  id: ID
+  meta: Meta
+  implicitRules: String
+  _implicitRules: Element
+  language: String
+  _language: Element
+  text: Narrative
+  contained: [Resource]
+  extension: [Extension]
+  modifierExtension: [Extension]
+  url: String
+  _url: Element
+  identifier: Identifier
+  version: String
+  _version: Element
+  name: String
+  _name: Element
+  status: String!
+  _status: Element
+  experimental: Boolean
+  _experimental: Element
+  publisher: String
+  _publisher: Element
+
+  # Contact details of the publisher
+  contact: [ValueSetcontact]
+  date: DateTime
+  _date: Element
+  lockedDate: date
+  _lockedDate: Element
+  description: String
+  _description: Element
+  useContext: [CodeableConcept]
+  immutable: Boolean
+  _immutable: Element
+  requirements: String
+  _requirements: Element
+  copyright: String
+  _copyright: Element
+  extensible: Boolean
+  _extensible: Element
+
+  # An inline code system, which is part of this value set
+  codeSystem: ValueSetcodeSystem
+
+  # When value set includes codes from elsewhere
+  compose: ValueSetcompose
+
+  # Used when the value set is "expanded"
+  expansion: ValueSetexpansion
+}
+
+# An inline code system, which is part of this value set
+type ValueSetcodeSystem {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  system: String!
+  _system: Element
+  version: String
+  _version: Element
+  caseSensitive: Boolean
+  _caseSensitive: Element
+
+  # Concepts in the code system
+  concept: [ValueSetcodeSystemconcept]!
+}
+
+# Concepts in the code system
+type ValueSetcodeSystemconcept {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  code: String!
+  _code: Element
+  abstract: Boolean
+  _abstract: Element
+  display: String
+  _display: Element
+  definition: String
+  _definition: Element
+
+  # Additional representations for the concept
+  designation: [ValueSetcodeSystemconceptdesignation]
+
+  # Child Concepts (is-a/contains/categorizes)
+  concept: [ValueSetcodeSystemconcept]
+}
+
+# Additional representations for the concept
+type ValueSetcodeSystemconceptdesignation {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  language: String
+  _language: Element
+  use: Coding
+  value: String!
+  _value: Element
+}
+
+# Additional representations for the concept
+input ValueSetcodeSystemconceptdesignationInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  language: String
+  _language: ElementInput
+  use: CodingInput
+  value: String!
+  _value: ElementInput
+}
+
+# Concepts in the code system
+input ValueSetcodeSystemconceptInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  code: String!
+  _code: ElementInput
+  abstract: Boolean
+  _abstract: ElementInput
+  display: String
+  _display: ElementInput
+  definition: String
+  _definition: ElementInput
+
+  # Additional representations for the concept
+  designation: [ValueSetcodeSystemconceptdesignationInput]
+
+  # Child Concepts (is-a/contains/categorizes)
+  concept: [ValueSetcodeSystemconceptInput]
+}
+
+# An inline code system, which is part of this value set
+input ValueSetcodeSystemInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  system: String!
+  _system: ElementInput
+  version: String
+  _version: ElementInput
+  caseSensitive: Boolean
+  _caseSensitive: ElementInput
+
+  # Concepts in the code system
+  concept: [ValueSetcodeSystemconceptInput]!
+}
+
+# When value set includes codes from elsewhere
+type ValueSetcompose {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  import: [String]
+  _import: Element
+
+  # Include one or more codes from a code system
+  include: [ValueSetcomposeinclude]
+
+  # Explicitly exclude codes
+  exclude: [ValueSetcomposeinclude]
+}
+
+# Include one or more codes from a code system
+type ValueSetcomposeinclude {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  system: String!
+  _system: Element
+  version: String
+  _version: Element
+
+  # A concept defined in the system
+  concept: [ValueSetcomposeincludeconcept]
+
+  # Select codes/concepts by their properties (including relationships)
+  filter: [ValueSetcomposeincludefilter]
+}
+
+# A concept defined in the system
+type ValueSetcomposeincludeconcept {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  code: String!
+  _code: Element
+  display: String
+  _display: Element
+
+  # Additional representations for this valueset
+  designation: [ValueSetcodeSystemconceptdesignation]
+}
+
+# A concept defined in the system
+input ValueSetcomposeincludeconceptInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  code: String!
+  _code: ElementInput
+  display: String
+  _display: ElementInput
+
+  # Additional representations for this valueset
+  designation: [ValueSetcodeSystemconceptdesignationInput]
+}
+
+# Select codes/concepts by their properties (including relationships)
+type ValueSetcomposeincludefilter {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  property: String!
+  _property: Element
+  op: String!
+  _op: Element
+  value: String!
+  _value: Element
+}
+
+# Select codes/concepts by their properties (including relationships)
+input ValueSetcomposeincludefilterInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  property: String!
+  _property: ElementInput
+  op: String!
+  _op: ElementInput
+  value: String!
+  _value: ElementInput
+}
+
+# Include one or more codes from a code system
+input ValueSetcomposeincludeInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  system: String!
+  _system: ElementInput
+  version: String
+  _version: ElementInput
+
+  # A concept defined in the system
+  concept: [ValueSetcomposeincludeconceptInput]
+
+  # Select codes/concepts by their properties (including relationships)
+  filter: [ValueSetcomposeincludefilterInput]
+}
+
+# When value set includes codes from elsewhere
+input ValueSetcomposeInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  import: [String]
+  _import: ElementInput
+
+  # Include one or more codes from a code system
+  include: [ValueSetcomposeincludeInput]
+
+  # Explicitly exclude codes
+  exclude: [ValueSetcomposeincludeInput]
+}
+
+# Contact details of the publisher
+type ValueSetcontact {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  name: String
+  _name: Element
+  telecom: [ContactPoint]
+}
+
+# Contact details of the publisher
+input ValueSetcontactInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  name: String
+  _name: ElementInput
+  telecom: [ContactPointInput]
+}
+
+# Used when the value set is "expanded"
+type ValueSetexpansion {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  identifier: String!
+  _identifier: Element
+  timestamp: DateTime!
+  _timestamp: Element
+  total: Int
+  _total: Element
+  offset: Int
+  _offset: Element
+
+  # Parameter that controlled the expansion process
+  parameter: [ValueSetexpansionparameter]
+
+  # Codes in the value set
+  contains: [ValueSetexpansioncontains]
+}
+
+# Codes in the value set
+type ValueSetexpansioncontains {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  system: String
+  _system: Element
+  abstract: Boolean
+  _abstract: Element
+  version: String
+  _version: Element
+  code: String
+  _code: Element
+  display: String
+  _display: Element
+
+  # Codes contained under this entry
+  contains: [ValueSetexpansioncontains]
+}
+
+# Codes in the value set
+input ValueSetexpansioncontainsInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  system: String
+  _system: ElementInput
+  abstract: Boolean
+  _abstract: ElementInput
+  version: String
+  _version: ElementInput
+  code: String
+  _code: ElementInput
+  display: String
+  _display: ElementInput
+
+  # Codes contained under this entry
+  contains: [ValueSetexpansioncontainsInput]
+}
+
+# Used when the value set is "expanded"
+input ValueSetexpansionInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  identifier: String!
+  _identifier: ElementInput
+  timestamp: DateTime!
+  _timestamp: ElementInput
+  total: Int
+  _total: ElementInput
+  offset: Int
+  _offset: ElementInput
+
+  # Parameter that controlled the expansion process
+  parameter: [ValueSetexpansionparameterInput]
+
+  # Codes in the value set
+  contains: [ValueSetexpansioncontainsInput]
+}
+
+# Parameter that controlled the expansion process
+type ValueSetexpansionparameter {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  name: String!
+  _name: Element
+
+  # Value of the named parameter
+  valueString: String
+
+  # Value of the named parameter
+  valueBoolean: Boolean
+
+  # Value of the named parameter
+  valueInteger: Int
+
+  # Value of the named parameter
+  valueDecimal: Float
+
+  # Value of the named parameter
+  valueUri: String
+
+  # Value of the named parameter
+  valueCode: String
+}
+
+# Parameter that controlled the expansion process
+input ValueSetexpansionparameterInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  name: String!
+  _name: ElementInput
+
+  # Value of the named parameter
+  valueString: String
+
+  # Value of the named parameter
+  valueBoolean: Boolean
+
+  # Value of the named parameter
+  valueInteger: Int
+
+  # Value of the named parameter
+  valueDecimal: Float
+
+  # Value of the named parameter
+  valueUri: String
+
+  # Value of the named parameter
+  valueCode: String
+}
+
+# A set of codes drawn from one or more code systems
+input ValueSetInput {
+  resourceType: String
+  id: ID
+  meta: MetaInput
+  implicitRules: String
+  _implicitRules: ElementInput
+  language: String
+  _language: ElementInput
+  text: NarrativeInput
+  contained: [ResourceInput]
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  url: String
+  _url: ElementInput
+  identifier: IdentifierInput
+  version: String
+  _version: ElementInput
+  name: String
+  _name: ElementInput
+  status: String!
+  _status: ElementInput
+  experimental: Boolean
+  _experimental: ElementInput
+  publisher: String
+  _publisher: ElementInput
+
+  # Contact details of the publisher
+  contact: [ValueSetcontactInput]
+  date: DateTime
+  _date: ElementInput
+  lockedDate: date
+  _lockedDate: ElementInput
+  description: String
+  _description: ElementInput
+  useContext: [CodeableConceptInput]
+  immutable: Boolean
+  _immutable: ElementInput
+  requirements: String
+  _requirements: ElementInput
+  copyright: String
+  _copyright: ElementInput
+  extensible: Boolean
+  _extensible: ElementInput
+
+  # An inline code system, which is part of this value set
+  codeSystem: ValueSetcodeSystemInput
+
+  # When value set includes codes from elsewhere
+  compose: ValueSetcomposeInput
+
+  # Used when the value set is "expanded"
+  expansion: ValueSetexpansionInput
+}
+
+type valueSetMutation {
+  remove(_id: ID!): ValueSet
+  removeAll: Boolean
+  upsert(data: ValueSetInput!): ValueSet
+}
+
+type valueSetQuery {
+  find: [ValueSet]
+  findOne(id: ID!): ValueSet
+}

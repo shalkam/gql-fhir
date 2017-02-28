@@ -1,11 +1,4 @@
-import {
-  app,
-  BrowserWindow,
-  Menu,
-  shell,
-  ipcMain,
-  dialog
-} from 'electron';
+import { app, BrowserWindow, Menu, shell, ipcMain, dialog } from 'electron';
 // var Loader = require('./loaders/index.js');
 // var MongoDB = require('./loaders/mongo.js');
 import Server from './server/server.dev.js';
@@ -28,21 +21,21 @@ app.on('ready', () => {
   mainWindow = new BrowserWindow({
     show: false,
     width: 1024,
-    height: 728,
     // webPreferences: {
     //   // Load `electron-notification-shim` in rendering view.
     //   preload: path.join(__dirname, 'notify.js')
     // }
+    height: 728
   });
   mainWindow.loadURL(`file://${__dirname}/client/index.html`);
   Server.on('server.loaded', () => {
     console.log('Server has started');
     mainWindow.webContents.send('loaded.server');
-  })
+  });
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.show();
     mainWindow.focus();
-    mainWindow.webContents.send('app.started')
+    mainWindow.webContents.send('app.started');
     // Loader.init();
     // Loader.on('loaded.db', () => {
     //   mainWindow.webContents.send('loaded.db');
@@ -55,9 +48,9 @@ app.on('ready', () => {
     // })
   });
   // Listen for notification events.
-    ipcMain.on('notification-shim', (e, msg) => {
-        console.log(`Title: ${msg.title}, Body: ${msg.options.body}`);
-    });
+  ipcMain.on('notification-shim', (e, msg) => {
+    console.log(`Title: ${msg.title}, Body: ${msg.options.body}`);
+  });
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
@@ -65,11 +58,13 @@ app.on('ready', () => {
   mainWindow.webContents.on('context-menu', (e, props) => {
     const { x, y } = props;
 
-    Menu.buildFromTemplate([{
-      label: 'Inspect element',
-      click() {
-        mainWindow.inspectElement(x, y);
+    Menu.buildFromTemplate([
+      {
+        label: 'Inspect element',
+        click() {
+          mainWindow.inspectElement(x, y);
+        }
       }
-    }]).popup(mainWindow);
+    ]).popup(mainWindow);
   });
 });

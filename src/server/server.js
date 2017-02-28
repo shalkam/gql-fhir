@@ -31,6 +31,11 @@ class Loader extends events.EventEmitter {
     );
     app.use(passport.initialize());
     app.use(passport.session());
+    // persistent login sessions
+    if (process.env.NODE_ENV !== 'DEV_SERVER') {
+      expressWebpack(app);
+    }
+    app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
     mongoose.connection.on('connected', function(error) {
       if (error) throw error;
       const aclInstance = new acl(new acl.mongodbBackend(mongoose.connection.db, 'acl_'));
@@ -50,5 +55,4 @@ class Loader extends events.EventEmitter {
     });
   }
 }
-
-export default new Loader();
+module.exports = new Loader();

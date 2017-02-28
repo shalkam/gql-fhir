@@ -1,16 +1,4 @@
-import mongoose from 'mongoose';
-import DomainResource from '../../domain-resource/model.js';
+import converter from '../../../helpers/mongoose-schema/json-to-schema.js';
+import relatedPersonJson from '../../../profiles/resources/related-person.json';
 
-var schema = new DomainResource({
-  identifier: { type: {} },
-  patient: { type: {} },
-  relationship: { type: {} },
-  name: { type: {} },
-  telecom: { type: {} },
-  gender: { type: {} },
-  birthDate: { type: {} },
-  address: { type: {} },
-  period: { type: {} }
-});
-
-export default mongoose.model('relatedPerson', schema);
+export default converter.init(relatedPersonJson);

@@ -5,9 +5,6 @@ import { GraphQLObjectType } from 'graphql';
 
 export default {
   patient: {
-    type: new GraphQLObjectType({ name: 'patientMutation', fields: { removeAll, remove, upsert } }),
-    resolve(root, params, context, ast) {
-      return true;
-    }
+    type: new GraphQLObjectType({ name: 'patientMutation', fields: { removeAll, remove, upsert } })
   }
 };

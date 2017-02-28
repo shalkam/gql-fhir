@@ -4,6 +4,8 @@ import valueSetJson from './value-set.json';
 import relatedPersonJson from './related-person.json';
 import practitionerJson from './practitioner.json';
 import encounterJson from './encounter.json';
+import episodeOfCareJson from './episode-of-care.json';
+import bundleJson from './bundle.json';
 
 const patientInput = jsonToSchema(patientJson, 'input');
 const patient = jsonToSchema(patientJson);
@@ -15,6 +17,10 @@ const practitionerInput = jsonToSchema(practitionerJson, 'input');
 const practitioner = jsonToSchema(practitionerJson);
 const encounterInput = jsonToSchema(encounterJson, 'input');
 const encounter = jsonToSchema(encounterJson);
+const episodeOfCare = jsonToSchema(episodeOfCareJson);
+const episodeOfCareInput = jsonToSchema(episodeOfCareJson, 'input');
+const bundle = jsonToSchema(bundleJson);
+const bundleInput = jsonToSchema(bundleJson, 'input');
 
 export {
   patient,
@@ -26,5 +32,9 @@ export {
   practitionerInput,
   practitioner,
   encounterInput,
-  encounter
+  encounter,
+  episodeOfCare,
+  episodeOfCareInput,
+  bundle,
+  bundleInput
 };

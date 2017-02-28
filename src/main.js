@@ -14,19 +14,15 @@ app.on('window-all-closed', () => {
 
 app.on('ready', () => {
   Server.init();
-  mainWindow = new BrowserWindow({
-    show: false,
-    width: 1024,
-    height: 728
-  });
+  mainWindow = new BrowserWindow({ show: false, width: 1024, height: 728 });
   mainWindow.loadURL(`file://${__dirname}/client/index.html`);
   Server.on('server.loaded', () => {
-     mainWindow.webContents.send('loaded.server');
-   })
+    mainWindow.webContents.send('loaded.server');
+  });
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.show();
     mainWindow.focus();
-    mainWindow.webContents.send('app.started')
+    mainWindow.webContents.send('app.started');
     // Loader.init();
     // Loader.on('loaded.db', () => {
     //   mainWindow.webContents.send('loaded.db');

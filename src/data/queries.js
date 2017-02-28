@@ -5,12 +5,16 @@ import valueSet from './fhir/resources/value-set/queries/index.js';
 import practitioner from './fhir/resources/practitioner/queries/index.js';
 import relatedPerson from './fhir/resources/related-person/queries/index.js';
 import encounter from './fhir/resources/encounter/queries/index.js';
+import episodeOfCare from './fhir/resources/episode-of-care/queries/index.js';
+import bundle from './fhir/resources/bundle/queries/index.js';
 export default {
-  ...user,
+  // ...user,
   ...valueSet,
   // ...resources,
   ...practitioner,
   ...relatedPerson,
-  ...patient,
-  ...encounter
+  ...encounter,
+  ...episodeOfCare,
+  ...bundle,
+  ...patient
 };

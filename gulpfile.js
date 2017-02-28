@@ -90,17 +90,24 @@ gulp.task('dev-server', function(done) {
     nodemon.restart();
   });
 });
-gulp.task('build-schema', function() {
-  fetchSchema(config.APP_URL + ':' + config.APP_PORT + '/' + config.GQL_URL_DIR, {
-    readable: true
-  }).then(function(schema) {
-    fs.writeFile(path.join(__dirname, 'src/data/schema.graphql'), schema, function(err) {
-      if (err) {
-        return console.log(err);
+gulp.task('build-schema', [ 'dev-server' ], function getSchema() {
+  fetchSchema(config.APP_URL + ':' + config.APP_PORT + '/' + config.GQL_URL_DIR, { readable: true })
+    .then(function(schema) {
+      fs.writeFile(path.join(__dirname, 'src/data/schema.graphql'), schema, function(err) {
+        if (err) {
+          return console.log(err);
+        }
+        console.log('Schema saved to: src/data/schema.graphql');
+        console.log('Closing server');
+        process.exit();
+      });
+    })
+    .catch(err => {
+      if (err.code === 'ECONNREFUSED') {
+        console.log('Server not loaded, retrying in one second....');
+        setTimeout(getSchema, 1000);
       }
-      console.log('Schema saved to: src/data/schema.graphql');
     });
-  });
 });
 gulp.task('build', [ 'frontend-build', 'backend-build' ]);
 gulp.task('run', [ 'watch-electron' ], function() {

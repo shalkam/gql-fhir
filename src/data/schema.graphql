@@ -124,6 +124,217 @@ input AttachmentInput {
   _creation: ElementInput
 }
 
+# Contains a collection of resources
+type Bundle {
+  resourceType: String
+  id: ID
+  meta: Meta
+  implicitRules: String
+  _implicitRules: Element
+  language: String
+  _language: Element
+  type: String!
+  _type: Element
+  total: unsignedInt
+  _total: Element
+
+  # Links related to this Bundle
+  link: [Bundlelink]
+
+  # Entry in the bundle - will have a resource, or information
+  entry: [Bundleentry]
+  signature: Signature
+}
+
+# Entry in the bundle - will have a resource, or information
+type Bundleentry {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+
+  # Links related to this entry
+  link: [Bundlelink]
+  fullUrl: String
+  _fullUrl: Element
+  resource: Resource
+
+  # Search related information
+  search: Bundleentrysearch
+
+  # Transaction Related Information
+  request: Bundleentryrequest
+
+  # Transaction Related Information
+  response: Bundleentryresponse
+}
+
+# Entry in the bundle - will have a resource, or information
+input BundleentryInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+
+  # Links related to this entry
+  link: [BundlelinkInput]
+  fullUrl: String
+  _fullUrl: ElementInput
+  resource: ResourceInput
+
+  # Search related information
+  search: BundleentrysearchInput
+
+  # Transaction Related Information
+  request: BundleentryrequestInput
+
+  # Transaction Related Information
+  response: BundleentryresponseInput
+}
+
+# Transaction Related Information
+type Bundleentryrequest {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  method: String!
+  _method: Element
+  url: String!
+  _url: Element
+  ifNoneMatch: String
+  _ifNoneMatch: Element
+  ifModifiedSince: instant
+  _ifModifiedSince: Element
+  ifMatch: String
+  _ifMatch: Element
+  ifNoneExist: String
+  _ifNoneExist: Element
+}
+
+# Transaction Related Information
+input BundleentryrequestInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  method: String!
+  _method: ElementInput
+  url: String!
+  _url: ElementInput
+  ifNoneMatch: String
+  _ifNoneMatch: ElementInput
+  ifModifiedSince: instant
+  _ifModifiedSince: ElementInput
+  ifMatch: String
+  _ifMatch: ElementInput
+  ifNoneExist: String
+  _ifNoneExist: ElementInput
+}
+
+# Transaction Related Information
+type Bundleentryresponse {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  status: String!
+  _status: Element
+  location: String
+  _location: Element
+  etag: String
+  _etag: Element
+  lastModified: instant
+  _lastModified: Element
+}
+
+# Transaction Related Information
+input BundleentryresponseInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  status: String!
+  _status: ElementInput
+  location: String
+  _location: ElementInput
+  etag: String
+  _etag: ElementInput
+  lastModified: instant
+  _lastModified: ElementInput
+}
+
+# Search related information
+type Bundleentrysearch {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  mode: String
+  _mode: Element
+  score: Float
+  _score: Element
+}
+
+# Search related information
+input BundleentrysearchInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  mode: String
+  _mode: ElementInput
+  score: Float
+  _score: ElementInput
+}
+
+# Contains a collection of resources
+input BundleInput {
+  resourceType: String
+  id: ID
+  meta: MetaInput
+  implicitRules: String
+  _implicitRules: ElementInput
+  language: String
+  _language: ElementInput
+  type: String!
+  _type: ElementInput
+  total: unsignedInt
+  _total: ElementInput
+
+  # Links related to this Bundle
+  link: [BundlelinkInput]
+
+  # Entry in the bundle - will have a resource, or information
+  entry: [BundleentryInput]
+  signature: SignatureInput
+}
+
+# Links related to this Bundle
+type Bundlelink {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  relation: String!
+  _relation: Element
+  url: String!
+  _url: Element
+}
+
+# Links related to this Bundle
+input BundlelinkInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  relation: String!
+  _relation: ElementInput
+  url: String!
+  _url: ElementInput
+}
+
+type bundleMutation {
+  remove(_id: ID!): Bundle
+  removeAll: Boolean
+  upsert(data: BundleInput!): Bundle
+}
+
+type bundleQuery {
+  find: [Bundle]
+  findOne(id: ID!): Bundle
+}
+
 # Concept - reference to a terminology or just  text
 type CodeableConcept {
   id: ID
@@ -221,6 +432,318 @@ type Element {
 input ElementInput {
   id: ID
   extension: [ExtensionInput]
+}
+
+# An interaction during which services are provided to the patient
+type Encounter {
+  resourceType: String
+  id: ID
+  meta: Meta
+  implicitRules: String
+  _implicitRules: Element
+  language: String
+  _language: Element
+  text: Narrative
+  contained: [Resource]
+  extension: [Extension]
+  modifierExtension: [Extension]
+  identifier: [Identifier]
+  status: String!
+  _status: Element
+
+  # List of past encounter statuses
+  statusHistory: [EncounterstatusHistory]
+  class: String
+  _class: Element
+  type: [CodeableConcept]
+  priority: CodeableConcept
+  patient: Reference
+  episodeOfCare: [Reference]
+  incomingReferral: [Reference]
+
+  # List of participants involved in the encounter
+  participant: [Encounterparticipant]
+  appointment: Reference
+  period: Period
+  length: Quantity
+  reason: [CodeableConcept]
+  indication: [Reference]
+
+  # Details about the admission to a healthcare service
+  hospitalization: Encounterhospitalization
+
+  # List of locations where the patient has been
+  location: [Encounterlocation]
+  serviceProvider: Reference
+  partOf: Reference
+}
+
+# Details about the admission to a healthcare service
+type Encounterhospitalization {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  preAdmissionIdentifier: Identifier
+  origin: Reference
+  admitSource: CodeableConcept
+  admittingDiagnosis: [Reference]
+  reAdmission: CodeableConcept
+  dietPreference: [CodeableConcept]
+  specialCourtesy: [CodeableConcept]
+  specialArrangement: [CodeableConcept]
+  destination: Reference
+  dischargeDisposition: CodeableConcept
+  dischargeDiagnosis: [Reference]
+}
+
+# Details about the admission to a healthcare service
+input EncounterhospitalizationInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  preAdmissionIdentifier: IdentifierInput
+  origin: ReferenceInput
+  admitSource: CodeableConceptInput
+  admittingDiagnosis: [ReferenceInput]
+  reAdmission: CodeableConceptInput
+  dietPreference: [CodeableConceptInput]
+  specialCourtesy: [CodeableConceptInput]
+  specialArrangement: [CodeableConceptInput]
+  destination: ReferenceInput
+  dischargeDisposition: CodeableConceptInput
+  dischargeDiagnosis: [ReferenceInput]
+}
+
+# An interaction during which services are provided to the patient
+input EncounterInput {
+  resourceType: String
+  id: ID
+  meta: MetaInput
+  implicitRules: String
+  _implicitRules: ElementInput
+  language: String
+  _language: ElementInput
+  text: NarrativeInput
+  contained: [ResourceInput]
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  identifier: [IdentifierInput]
+  status: String!
+  _status: ElementInput
+
+  # List of past encounter statuses
+  statusHistory: [EncounterstatusHistoryInput]
+  class: String
+  _class: ElementInput
+  type: [CodeableConceptInput]
+  priority: CodeableConceptInput
+  patient: ReferenceInput
+  episodeOfCare: [ReferenceInput]
+  incomingReferral: [ReferenceInput]
+
+  # List of participants involved in the encounter
+  participant: [EncounterparticipantInput]
+  appointment: ReferenceInput
+  period: PeriodInput
+  length: QuantityInput
+  reason: [CodeableConceptInput]
+  indication: [ReferenceInput]
+
+  # Details about the admission to a healthcare service
+  hospitalization: EncounterhospitalizationInput
+
+  # List of locations where the patient has been
+  location: [EncounterlocationInput]
+  serviceProvider: ReferenceInput
+  partOf: ReferenceInput
+}
+
+# List of locations where the patient has been
+type Encounterlocation {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  location: Reference!
+  status: String
+  _status: Element
+  period: Period
+}
+
+# List of locations where the patient has been
+input EncounterlocationInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  location: ReferenceInput!
+  status: String
+  _status: ElementInput
+  period: PeriodInput
+}
+
+type encounterMutation {
+  remove(_id: ID!): Encounter
+  removeAll: Boolean
+  upsert(data: EncounterInput!): Encounter
+}
+
+# List of participants involved in the encounter
+type Encounterparticipant {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  type: [CodeableConcept]
+  period: Period
+  individual: Reference
+}
+
+# List of participants involved in the encounter
+input EncounterparticipantInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  type: [CodeableConceptInput]
+  period: PeriodInput
+  individual: ReferenceInput
+}
+
+type encounterQuery {
+  find: [Encounter]
+  findOne(id: ID!): Encounter
+}
+
+# List of past encounter statuses
+type EncounterstatusHistory {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  status: String!
+  _status: Element
+  period: Period!
+}
+
+# List of past encounter statuses
+input EncounterstatusHistoryInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  status: String!
+  _status: ElementInput
+  period: PeriodInput!
+}
+
+# An association of a Patient with an Organization and  Healthcare Provider(s) for
+# a period of time that the Organization assumes some level of responsibility
+type EpisodeOfCare {
+  resourceType: String
+  id: ID
+  meta: Meta
+  implicitRules: String
+  _implicitRules: Element
+  language: String
+  _language: Element
+  text: Narrative
+  contained: [Resource]
+  extension: [Extension]
+  modifierExtension: [Extension]
+  identifier: [Identifier]
+  status: String!
+  _status: Element
+
+  # Past list of status codes
+  statusHistory: [EpisodeOfCarestatusHistory]
+  type: [CodeableConcept]
+  condition: [Reference]
+  patient: Reference!
+  managingOrganization: Reference
+  period: Period
+  referralRequest: [Reference]
+  careManager: Reference
+
+  # Other practitioners facilitating this episode of care
+  careTeam: [EpisodeOfCarecareTeam]
+}
+
+# Other practitioners facilitating this episode of care
+type EpisodeOfCarecareTeam {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  role: [CodeableConcept]
+  period: Period
+  member: Reference
+}
+
+# Other practitioners facilitating this episode of care
+input EpisodeOfCarecareTeamInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  role: [CodeableConceptInput]
+  period: PeriodInput
+  member: ReferenceInput
+}
+
+# An association of a Patient with an Organization and  Healthcare Provider(s) for
+# a period of time that the Organization assumes some level of responsibility
+input EpisodeOfCareInput {
+  resourceType: String
+  id: ID
+  meta: MetaInput
+  implicitRules: String
+  _implicitRules: ElementInput
+  language: String
+  _language: ElementInput
+  text: NarrativeInput
+  contained: [ResourceInput]
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  identifier: [IdentifierInput]
+  status: String!
+  _status: ElementInput
+
+  # Past list of status codes
+  statusHistory: [EpisodeOfCarestatusHistoryInput]
+  type: [CodeableConceptInput]
+  condition: [ReferenceInput]
+  patient: ReferenceInput!
+  managingOrganization: ReferenceInput
+  period: PeriodInput
+  referralRequest: [ReferenceInput]
+  careManager: ReferenceInput
+
+  # Other practitioners facilitating this episode of care
+  careTeam: [EpisodeOfCarecareTeamInput]
+}
+
+type episodeOfCareMutation {
+  remove(_id: ID!): EpisodeOfCare
+  removeAll: Boolean
+  upsert(data: EpisodeOfCareInput!): EpisodeOfCare
+}
+
+type episodeOfCareQuery {
+  find: [EpisodeOfCare]
+  findOne(id: ID!): EpisodeOfCare
+}
+
+# Past list of status codes
+type EpisodeOfCarestatusHistory {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  status: String!
+  _status: Element
+  period: Period!
+}
+
+# Past list of status codes
+input EpisodeOfCarestatusHistoryInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  status: String!
+  _status: ElementInput
+  period: PeriodInput!
 }
 
 type Extension {
@@ -536,7 +1059,12 @@ input MetaInput {
 }
 
 type Mutation {
+  practitioner: practitionerMutation
   valueSet: valueSetMutation
+  relatedPerson: relatedPersonMutation
+  encounter: encounterMutation
+  episodeOfCare: episodeOfCareMutation
+  bundle: bundleMutation
   patient: patientMutation
 }
 
@@ -790,6 +1318,131 @@ input PeriodInput {
 # an integer with value more than zero
 scalar positiveInt
 
+# A person with a  formal responsibility in the provisioning of healthcare or related services
+type Practitioner {
+  resourceType: String
+  id: ID
+  meta: Meta
+  implicitRules: String
+  _implicitRules: Element
+  language: String
+  _language: Element
+  text: Narrative
+  contained: [Resource]
+  extension: [Extension]
+  modifierExtension: [Extension]
+  identifier: [Identifier]
+  active: Boolean
+  _active: Element
+  name: HumanName
+  telecom: [ContactPoint]
+  address: [Address]
+  gender: String
+  _gender: Element
+  birthDate: date
+  _birthDate: Element
+  photo: [Attachment]
+
+  # Roles/organizations the practitioner is associated with
+  practitionerRole: [PractitionerpractitionerRole]
+
+  # Qualifications obtained by training and certification
+  qualification: [Practitionerqualification]
+  communication: [CodeableConcept]
+}
+
+# A person with a  formal responsibility in the provisioning of healthcare or related services
+input PractitionerInput {
+  resourceType: String
+  id: ID
+  meta: MetaInput
+  implicitRules: String
+  _implicitRules: ElementInput
+  language: String
+  _language: ElementInput
+  text: NarrativeInput
+  contained: [ResourceInput]
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  identifier: [IdentifierInput]
+  active: Boolean
+  _active: ElementInput
+  name: HumanNameInput
+  telecom: [ContactPointInput]
+  address: [AddressInput]
+  gender: String
+  _gender: ElementInput
+  birthDate: date
+  _birthDate: ElementInput
+  photo: [AttachmentInput]
+
+  # Roles/organizations the practitioner is associated with
+  practitionerRole: [PractitionerpractitionerRoleInput]
+
+  # Qualifications obtained by training and certification
+  qualification: [PractitionerqualificationInput]
+  communication: [CodeableConceptInput]
+}
+
+type practitionerMutation {
+  remove(_id: ID!): Practitioner
+  removeAll: Boolean
+  upsert(data: PractitionerInput!): Practitioner
+}
+
+# Roles/organizations the practitioner is associated with
+type PractitionerpractitionerRole {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  managingOrganization: Reference
+  role: CodeableConcept
+  specialty: [CodeableConcept]
+  period: Period
+  location: [Reference]
+  healthcareService: [Reference]
+}
+
+# Roles/organizations the practitioner is associated with
+input PractitionerpractitionerRoleInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  managingOrganization: ReferenceInput
+  role: CodeableConceptInput
+  specialty: [CodeableConceptInput]
+  period: PeriodInput
+  location: [ReferenceInput]
+  healthcareService: [ReferenceInput]
+}
+
+# Qualifications obtained by training and certification
+type Practitionerqualification {
+  id: ID
+  extension: [Extension]
+  modifierExtension: [Extension]
+  identifier: [Identifier]
+  code: CodeableConcept!
+  period: Period
+  issuer: Reference
+}
+
+# Qualifications obtained by training and certification
+input PractitionerqualificationInput {
+  id: ID
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  identifier: [IdentifierInput]
+  code: CodeableConceptInput!
+  period: PeriodInput
+  issuer: ReferenceInput
+}
+
+type practitionerQuery {
+  find: [Practitioner]
+  findOne(id: ID!): Practitioner
+}
+
 # A measured or measurable amount
 type Quantity {
   id: ID
@@ -824,6 +1477,11 @@ input QuantityInput {
 
 type Query {
   valueSet: valueSetQuery
+  practitioner: practitionerQuery
+  relatedPerson: relatedPersonQuery
+  encounter: encounterQuery
+  episodeOfCare: episodeOfCareQuery
+  bundle: bundleQuery
   patient: patientQuery
 }
 
@@ -877,6 +1535,71 @@ input ReferenceInput {
   _reference: ElementInput
   display: String
   _display: ElementInput
+}
+
+# An person that is related to a patient, but who is not a direct target of care
+type RelatedPerson {
+  resourceType: String
+  id: ID
+  meta: Meta
+  implicitRules: String
+  _implicitRules: Element
+  language: String
+  _language: Element
+  text: Narrative
+  contained: [Resource]
+  extension: [Extension]
+  modifierExtension: [Extension]
+  identifier: [Identifier]
+  patient: Reference!
+  relationship: CodeableConcept
+  name: HumanName
+  telecom: [ContactPoint]
+  gender: String
+  _gender: Element
+  birthDate: date
+  _birthDate: Element
+  address: [Address]
+  photo: [Attachment]
+  period: Period
+}
+
+# An person that is related to a patient, but who is not a direct target of care
+input RelatedPersonInput {
+  resourceType: String
+  id: ID
+  meta: MetaInput
+  implicitRules: String
+  _implicitRules: ElementInput
+  language: String
+  _language: ElementInput
+  text: NarrativeInput
+  contained: [ResourceInput]
+  extension: [ExtensionInput]
+  modifierExtension: [ExtensionInput]
+  identifier: [IdentifierInput]
+  patient: ReferenceInput!
+  relationship: CodeableConceptInput
+  name: HumanNameInput
+  telecom: [ContactPointInput]
+  gender: String
+  _gender: ElementInput
+  birthDate: date
+  _birthDate: ElementInput
+  address: [AddressInput]
+  photo: [AttachmentInput]
+  period: PeriodInput
+}
+
+type relatedPersonMutation {
+  remove(_id: ID!): RelatedPerson
+  removeAll: Boolean
+  upsert(data: RelatedPersonInput!): RelatedPerson
+}
+
+type relatedPersonQuery {
+  find: [RelatedPerson]
+  findOne(id: ID!): RelatedPerson
 }
 
 # Base Resource

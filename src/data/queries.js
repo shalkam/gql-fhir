@@ -7,6 +7,7 @@ import relatedPerson from './fhir/resources/related-person/queries/index.js';
 import encounter from './fhir/resources/encounter/queries/index.js';
 import episodeOfCare from './fhir/resources/episode-of-care/queries/index.js';
 import bundle from './fhir/resources/bundle/queries/index.js';
+import searchParameter from './fhir/resources/search-parameter/queries/index.js';
 export default {
   // ...user,
   ...valueSet,
@@ -16,5 +17,6 @@ export default {
   ...encounter,
   ...episodeOfCare,
   ...bundle,
-  ...patient
+  ...patient,
+  ...searchParameter
 };

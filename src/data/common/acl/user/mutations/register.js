@@ -1,5 +1,4 @@
 import { GraphQLString, GraphQLObjectType, GraphQLNonNull } from 'graphql';
-import model from '../model/index.js';
 
 export default {
   type: new GraphQLObjectType({
@@ -13,9 +12,5 @@ export default {
   args: {
     username: { name: 'username', type: GraphQLString },
     password: { name: 'password', type: GraphQLString }
-  },
-  resolve(root, params, context, ast) {
-    const res = model.register(...arguments);
-    return res;
   }
-}
+};

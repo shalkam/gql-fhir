@@ -9,6 +9,7 @@ Server is currently implementing the following resources:
 
 For more details check the [roadmap](https://github.com/shalkam/gql-fhir/wiki/Roadmap)
 # Features
+* Uses JSON Structure definitions [converter](https://github.com/shalkam/gql-fhir/blob/master/src/data/fhir/helpers/gql-schema/index.js) to create [GraphQL schema](https://github.com/shalkam/gql-fhir/blob/master/src/data/schema.graphql)
 * Live editing inside electron
 * Webpack for bundling both backend and frontend
 * React.js for the frontend

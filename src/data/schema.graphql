@@ -1032,6 +1032,15 @@ input IdentifierInput {
 # zero-filled and may be ignored. Dates SHALL be valid dates. The time "24:00" is not allowed
 scalar instant
 
+type login {
+  username: String
+  message: String
+}
+
+type logout {
+  result: Boolean
+}
+
 # Metadata about a resource
 type Meta {
   id: ID
@@ -1060,6 +1069,10 @@ input MetaInput {
 
 type Mutation {
   practitioner: practitionerMutation
+  login(username: String, password: String): login
+  logout: logout
+  register(username: String, password: String): register
+  userUpsert(data: UserInput!): User
   valueSet: valueSetMutation
   relatedPerson: relatedPersonMutation
   encounter: encounterMutation
@@ -1537,6 +1550,12 @@ input ReferenceInput {
   _display: ElementInput
 }
 
+type register {
+  username: String
+  password: String
+  message: String
+}
+
 # An person that is related to a patient, but who is not a direct target of care
 type RelatedPerson {
   resourceType: String
@@ -1722,6 +1741,20 @@ input TimingInput {
 
 # an integer with value more than zero
 scalar unsignedInt
+
+type User {
+  _id: String
+  email: String
+  username: String
+  password: String
+}
+
+input UserInput {
+  _id: String
+  email: String
+  username: String
+  password: String
+}
 
 # A set of codes drawn from one or more code systems
 type ValueSet {

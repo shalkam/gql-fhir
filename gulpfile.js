@@ -44,7 +44,7 @@ function onBuild(done) {
   };
 }
 
-gulp.task('frontend-build', function(done) {
+gulp.task('build-client', function(done) {
   frontendCompiler.run(onBuild(done));
 });
 
@@ -109,6 +109,6 @@ gulp.task('build-schema', [ 'dev-server' ], function getSchema() {
       }
     });
 });
-gulp.task('build', [ 'frontend-build', 'backend-build' ]);
+gulp.task('build', [ 'build-client', 'build-server' ]);
 gulp.task('run', [ 'watch-electron' ], function() {
 });
